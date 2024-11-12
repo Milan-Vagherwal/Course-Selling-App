@@ -1,35 +1,11 @@
 const express = require("express");
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
-
-mongoose.connect("")
-
+const { userRouter } = require("./routes/user")
+const { courseRouter } = require("./routes/course")
 const app = express();
-app.use(express.json());
 
-app.post("/user/signup", async function (req, res){
-    res.json({
-        message: "signup endpoint"
-    })
-})
-app.post("/user/login", async function (req, res){
-    res.json({
-        message: "signin endpoint"
-    })
-})
-app.get("/user/purchase", async function (req, res){
-    res.json({
-        message: "purchased endpoint"
-    })
-})
-app.post("/course/purchase", async function (req, res){
-    res.json({
-        message: "purchased courses endpoint"
-    })
-})
-app.get("/course", async function (req, res){
-    res.json({
-        message: "courses endpoint"
-    })
-})
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/course", courseRouter);
+
+app.listen(3000);
+
 

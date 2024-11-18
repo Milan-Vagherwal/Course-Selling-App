@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 console.log("connected to");
 
 // Connect to MongoDB using Mongoose, here the connection string is to a MongoDB Atlas cluster
-mongoose.connect("mongodb+srv://mickyrathormv:Name%40123@cluster0.5bo2u.mongodb.net/coursera-app");
+mongoose.connect(process.env.MONGO_URL);
 
 // Create a reference to the Schema object for defining schemas for MongoDB collections
 const Schema = mongoose.Schema;

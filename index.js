@@ -1,4 +1,6 @@
 // Import necessary modules
+require('dotenv').config()
+
 const express = require("express"); // Express framework to handle HTTP requests and create the server
 const mongoose = require("mongoose"); // Mongoose library to interact with MongoDB
 const { userRouter } = require("./routes/user"); // Importing the user-specific routes
@@ -17,7 +19,7 @@ app.use("/api/v1/admin", adminRouter); // All routes starting with /api/v1/admin
 // Define an asynchronous main function for setting up the server and database connection
 async function main() {
     // Connect to MongoDB database using the provided connection string
-    await mongoose.connect("mongodb+srv://mickyrathormv:Name%40123@cluster0.5bo2u.mongodb.net/coursera-app");
+    await mongoose.connect(process.env.MONGO_URL);
 
     app.listen(3000);
     console.log("listening to port 3000");

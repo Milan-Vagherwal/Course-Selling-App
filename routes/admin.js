@@ -60,7 +60,8 @@ adminRouter.post("/course", adminMiddleware, async function (req, res){
      })
 
     res.json({
-         message: "course creation endpoint"
+         message: "course creation endpoint",
+         courseId: course.id
      })
 })
 adminRouter.put("/course", async function (req, res){

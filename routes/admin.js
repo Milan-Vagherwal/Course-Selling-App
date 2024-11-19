@@ -1,10 +1,11 @@
 const {Router} = require("express");
 const adminRouter = Router();
 // adminRouter.use(adminMiddleware);
-const {adminModel} = require("../db");
+const {adminModel, courseModel} = require("../db");
+// const {courseModel} = require("../db");
 const jwt = require("jsonwebtoken");
 const {JWT_ADMIN_PASSWORD} = require("../config");
-const course = require("./course");
+const course = require("./course.js");
 const { adminMiddleware } = require("./middleware/admin");
 
 
@@ -72,10 +73,10 @@ adminRouter.put("/course", adminMiddleware, async function (req, res){
         _id: courseId,
         creatorId: adminId
     },{
-       title,
-       description, 
-       imageURL, 
-       price
+       title: title,
+       description: description, 
+       imageURL: imageURL, 
+       price: price
     })
 
    res.json({
@@ -85,10 +86,9 @@ adminRouter.put("/course", adminMiddleware, async function (req, res){
 })
 adminRouter.get("/course/bulk", adminMiddleware, async function (req, res){
     const adminId = req.adminId;
-    
     const courses = await courseModel.find({
         creatorId: adminId
-    });
+    })
 
    res.json({
         message: "Course Updated",
